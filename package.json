@@ -1,0 +1,31 @@
+{
+  "name": "sistemavenda",
+  "version": "1.0.0",
+  "description": "Entregar",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schmidt1111/TP_Sistema-Venda.git"
+  },
+  "keywords": [
+    "keywords"
+  ],
+  "author": "Roberta Schmidt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schmidt1111/TP_Sistema-Venda/issues"
+  },
+  "homepage": "https://github.com/schmidt1111/TP_Sistema-Venda#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-status": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.5",
+    "sequelize-msnodesqlv8": "^0.2.6-beta.8",
+    "tedious": "^9.2.1"
+  }
+}
