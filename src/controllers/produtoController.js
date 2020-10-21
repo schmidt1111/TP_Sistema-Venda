@@ -1,27 +1,28 @@
-// Define a utilização do model usuario e a dependência http-status
-const Usuario = require('../models/usuario');
+// Define a utilização do model produto e a dependência http-status
+const Produto = require('../models/produto');
 const status = require('http-status');
+
 
 // Cria o método Insert, obtendo os dados da request
 exports.Insert = (req, res, next) => {
     const nome = req.body.nome;
-    const endereco = req.body.endereco;
-    const email = req.body.email;
-    const telefone = req.body.telefone;
+    const precocusto = req.body.precocusto;
+    const precovenda = req.body.precovenda;
+    const quantidade = req.body.quantidade;
     const ativo = req.body.ativo;
 
     // Popula cada um dos campos do model com os campos recebido na request
-    Usuario.create({
+    Produto.create({
         nome: nome,
-        endereco: endereco,
-        email: email,
-        telefone: telefone,
+        precocusto: precocusto,
+        precovenda: precovenda,
+        quantidade: quantidade,
         ativo: ativo,
     })
         //then = registra o que queremos que aconteca quando a Promise for resolvida
-        .then(usuario => {
-            if (usuario) {
-                res.status(status.OK).send(usuario);
+        .then(produto => {
+            if (produto) {
+                res.status(status.OK).send(produto);
             } else {
                 res.status(status.NOT_FOUND).send();
             }
@@ -29,47 +30,47 @@ exports.Insert = (req, res, next) => {
         //catch = registra o que queremos que aconteca quando a Promise falhar
         .catch(error => next(error));
 };
-
+//criando o método selecionar todos
 exports.SelectAll = (req, res, next) => {
-    Usuario.findAll()
-        .then(usuario => {
-            if (usuario) {
-                res.status(status.OK).send(usuario);
+    Produto.findAll()
+        .then(produto => {
+            if (produto) {
+                res.status(status.OK).send(produto);
             }
         })
         .catch(error => next(error));
 }
-
+//criar o método selecionar por id
 exports.SelectDetail = (req, res, next) => {
     const id = req.params.id;
 
-    Usuario.findByPk(id)
-        .then(usuario => {
-            if (usuario) {
-                res.status(status.OK).send(usuario);
+    Produto.findByPk(id)
+        .then(produto => {
+            if (produto) {
+                res.status(status.OK).send(produto);
             } else {
                 res.status(status.NOT_FOUND).send();
             }
         })
         .catch(error => next(error));
 };
-
+//criar o método atualizar
 exports.Update = (req, res, next) => {
     const id = req.params.id;
     const nome = req.body.nome;
-    const endereco = req.body.endereco;
-    const email = req.body.email;
-    const telefone = req.body.telefone;
+    const precocusto = req.body.precocusto;
+    const precovenda = req.body.precovenda;
+    const quantidade = req.body.quantidade;
     const ativo = req.body.ativo;
 
-    Usuario.findByPk(id)
-        .then(usuario => {
-            if (usuario) {
-                usuario.update({
+    Produto.findByPk(id)
+        .then(produto => {
+            if (produto) {
+                produto.update({
                     nome: nome,
-                    endereco: endereco,
-                    email: email,
-                    telefone: telefone,
+                    precocusto: precocusto,
+                    precovenda: precovenda,
+                    quantidade: quantidade,
                     ativo: ativo
                 },
                     {
@@ -85,14 +86,14 @@ exports.Update = (req, res, next) => {
         })
         .catch(error => next(error));
 };
-
+//criar metodo excluir dado
 exports.Delete = (req, res, next) => {
     const id = req.params.id;
 
-    Usuario.findByPk(id)
-        .then(usuario => {
-            if (usuario) {
-                usuario.destroy({
+    Produto.findByPk(id)
+        .then(produto => {
+            if (produto) {
+                produto.destroy({
                     where: { id: id }
                 })
                     .then(() => {
