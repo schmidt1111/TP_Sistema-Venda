@@ -19,7 +19,7 @@ const Pedido = sequelize.define("pedido", {
 
     },
     valorTotal: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DOUBLE(),
     },
 
